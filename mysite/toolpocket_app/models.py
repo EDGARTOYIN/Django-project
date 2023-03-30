@@ -25,6 +25,7 @@ class Category(models.Model):
     meta_keywords = models.CharField(max_length=150, null=False, blank=False)
     meta_description = models.TextField(max_length=500, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
     def __str__(self):
         return self.name
@@ -44,6 +45,6 @@ class Product(models.Model):
     meta_keywords = models.CharField(max_length=150, null=False, blank=False)
     meta_description = models.TextField(max_length=500, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    objects = models.Manager()
     def __str__(self):
         return self.name
