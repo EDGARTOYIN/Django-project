@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Category,Product
+from .models import Category, Product
 from django.contrib import messages
 
 
@@ -17,9 +17,26 @@ def collections(request):
 def collectionsview(request, slug):
     if Category.objects.filter(slug=slug, status=0):
         products = Product.objects.filter(category__slug=slug)
-        category_name = Category.objects.filter(slug=slug).first()
-        context = {'products': products, 'category_name': category_name}
+        category = Category.objects.filter(slug=slug).first()
+        context = {'products': products, 'category': category}
         return render(request, "toolpocket_app/products/index.html", context)
     else:
         messages.warning(request, 'no such category found')
         return redirect('collections')
+
+
+def productview(request, cate_slug, prod_slug):
+    if Category.objects.filter(slug=cate_slug, status=0):
+        if Product.objects.filter(slug=prod_slug, status=0):
+            products = Product.objects.filter(slug=prod_slug, status=0).first()
+            context = {'products': products}
+        else:
+            messages.error(request, 'No se encontro ese producto')
+            return redirect('collections')
+    else:
+        messages.error(request, 'No se encontro esa categoria')
+        return redirect('collections')
+    return render(request, "toolpocket_app/products/view.html", context)
+
+
+

@@ -2,10 +2,21 @@
 {#contenido cargado#}
 {% block content %}
 
+    <div class="py-3 bg-primary">
+        <div class="container">
+            <a class="text-white" href="{% url 'home' %}">
+                Home /
+            </a>
+            <a class="text-white" href="{% url 'collections' %}">
+                Categorias
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
                 <div class="col-md-12">
-                    <h1>Collections</h1>
+                    <h1>Categorias</h1>
                     <hr>
                     <div class="row">
                         {% for item in category %}

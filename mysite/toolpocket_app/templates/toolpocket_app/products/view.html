@@ -1,0 +1,61 @@
+{% extends 'toolpocket_app/layouts/main.html' %}
+{#contenido cargado#}
+{% block content %}
+
+    <div class="py-3 bg-primary">
+        <div class="container">
+            <a class="text-white" href="{% url 'home' %}">Home / </a>
+            <a class="text-white" href="{% url 'collections' %}">Categorias /</a>
+            <a class="text-white" href="{% url 'collectionsview' products.category.slug %}">{{ products.category.name }}</a>
+            <a class="text-white" href="{% url 'productview' products.category.slug products.slug %}">/ {{ products.name }}</a>
+        </div>
+    </div>
+
+    <div class="py-5">
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {% if products.tag %}
+                                            <label style="font-size: 16px" class="m-1 float-end badge bg-success trending_tag">{{ products.tag }}</label>
+                                        {% endif %}
+                                        <img src="{{ products.product_image.url }}" class="w-100" alt="img">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h2 class="mb-0">
+                                            {{ products.name }}
+                                            {% if products.trending %}
+                                                <label style="font-size: 16px" class="float-end badge bg-danger trending_tag">Trending</label>
+                                            {% endif %}
+                                        </h2>
+                                        <div class="col-md-12">
+                                            <hr>
+                                            <h3>Description</h3>
+                                            <p class="mt-3">
+                                                {{ products.description }}
+                                            </p>
+                                            <h4>
+                                                Donde lo obtengo?
+                                            </h4>
+                                             <p class="mt-3">
+                                                <a href="{{ products.link }}"  target="_blank">
+                                                    {{ products.link }}
+                                                </a>
+                                             </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+        </div>
+    </div>
+
+{% endblock content %}
