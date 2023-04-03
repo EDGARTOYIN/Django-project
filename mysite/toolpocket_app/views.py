@@ -5,7 +5,10 @@ from django.contrib import messages
 
 # Create your views here.
 def home(request):
-    return render(request, "toolpocket_app/index.html")
+    category = Category.objects.filter(status=0)
+    products = Product.objects.filter(status=0)
+    context = {'category': category, 'products': products}
+    return render(request, "toolpocket_app/index.html", context)
 
 
 def collections(request):
