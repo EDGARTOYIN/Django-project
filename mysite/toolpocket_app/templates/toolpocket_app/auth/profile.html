@@ -1,0 +1,9 @@
+{% extends 'toolpocket_app/layouts/main.html' %}
+
+{% block content %}
+    <div>
+        <h1>{{ user.user.username }}</h1>
+    </div>
+
+    <img src="{{ user.image.url }}" alt="Profile Image">
+{% endblock content %}

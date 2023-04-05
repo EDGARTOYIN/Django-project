@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Category, Product
+from .models import Category, Product, Profile
 from django.contrib import messages
 
 
@@ -42,4 +42,7 @@ def productview(request, cate_slug, prod_slug):
     return render(request, "toolpocket_app/products/view.html", context)
 
 
-
+def profile(request):
+    user = Profile.objects.get(user=request.user)
+    context = {'user': user}
+    return render(request, 'toolpocket_app/auth/profile.html', context)
