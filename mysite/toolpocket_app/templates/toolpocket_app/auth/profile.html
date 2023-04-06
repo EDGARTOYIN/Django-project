@@ -1,9 +1,22 @@
 {% extends 'toolpocket_app/layouts/main.html' %}
 
 {% block content %}
-    <div>
-        <h1>{{ user.user.username }}</h1>
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ profile_user.user.username }}</h3>
+        </div>
+        <div class="card-body text-center">
+          <img src="{{ profile_user.image.url }}" class="rounded-circle img-thumbnail" alt="Profile Image" style="max-width: 150px;">
+          <div class="my-3">
+            <h4>contacto:</h4>
+            <p>{{ profile_user.user.email }}</p>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <img src="{{ user.image.url }}" alt="Profile Image">
+  </div>
+</div>
 {% endblock content %}

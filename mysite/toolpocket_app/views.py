@@ -3,6 +3,7 @@ from .models import Category, Product, Profile
 from django.contrib import messages
 
 
+
 # Create your views here.
 def home(request):
     category = Category.objects.filter(status=0)
@@ -43,6 +44,6 @@ def productview(request, cate_slug, prod_slug):
 
 
 def profile(request):
-    user = Profile.objects.get(user=request.user)
-    context = {'user': user}
+    profile_user = Profile.objects.get(user=request.user)
+    context = {'profile_user': profile_user}
     return render(request, 'toolpocket_app/auth/profile.html', context)
