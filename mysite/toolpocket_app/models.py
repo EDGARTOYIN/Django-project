@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 import datetime
 import os
+from PIL import Image
 
 
 # Create your models here.
@@ -65,6 +66,15 @@ class Profile(models.Model):
     image = models.ImageField(default='user_uploads/default.jpg', upload_to=get_file_path1)
     objects = models.Manager()
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
     def __str__(self):
         return f'Perfil de {self.user.username}'
-
