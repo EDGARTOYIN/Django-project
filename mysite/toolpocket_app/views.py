@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Category, Product, Profile
 from django.contrib import messages
-
+from .forms import UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -43,7 +44,22 @@ def productview(request, cate_slug, prod_slug):
     return render(request, "toolpocket_app/products/view.html", context)
 
 
+@login_required
 def profile(request):
     profile_user = Profile.objects.get(user=request.user)
-    context = {'profile_user': profile_user}
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'tu cuenta ha sido acutalizada')
+            return redirect('profile')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {'profile_user': profile_user, 'u_form': u_form, 'p_form': p_form}
     return render(request, 'toolpocket_app/auth/profile.html', context)
