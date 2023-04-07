@@ -19,6 +19,11 @@
                                                     <img src="{{ p_item.product_image.url }}" alt="Category image" height="290" class="w-100"/>
                                                 </div>
                                                 <h4 class="text-center">{{  p_item.name }}</h4>
+                                                  <form action="{% url 'add_to_favorites' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="product_id" value="{{ p_item.id }}">
+                                                    <button type="submit" class="btn btn-primary">Agregar a favoritos</button>
+                                                  </form>
                                             </div>
                                          </a>
                                     </div>

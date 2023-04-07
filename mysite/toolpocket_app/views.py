@@ -63,3 +63,15 @@ def profile(request):
 
     context = {'profile_user': profile_user, 'u_form': u_form, 'p_form': p_form}
     return render(request, 'toolpocket_app/auth/profile.html', context)
+
+
+@login_required
+def add_to_favorites(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        product = Product.objects.get(pk=product_id)
+        user_profile = request.user.profile
+        user_profile.favorite_products.add(product)
+        messages.success(request, f'{product.name} agregado a tus favoritos')
+    return redirect('/')
+

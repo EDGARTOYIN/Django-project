@@ -63,6 +63,7 @@ class Product(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    favorite_products = models.ManyToManyField(Product)
     image = models.ImageField(default='user_uploads/default.jpg', upload_to=get_file_path1)
     objects = models.Manager()
 

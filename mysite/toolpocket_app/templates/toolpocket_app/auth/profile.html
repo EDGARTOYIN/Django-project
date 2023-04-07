@@ -35,6 +35,30 @@
                     </div>
                     <button type="submit" class="btn float-end shadow btn-success px-4">Update</button>
                 </form>
+
+               <div class="row my-4">
+                    {% for product in user.profile.favorite_products.all %}
+                        <a href="{% url 'productview' product.category.slug product.slug %}">
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="{{ product.product_image.url }}" class="card-img img-fluid rounded" style="object-fit: cover; height: 200px;" alt="{{ product.name }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ product.name }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <div class="col">
+                            <p>No tienes productos favoritos todavía.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
           </div>
         </div>
       </div>
