@@ -3,9 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import User, Profile
 from django import forms
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
-
 
 class CustomUserForm(UserCreationForm):
     username = forms.CharField(
@@ -27,11 +24,7 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
 
-    def __init__(self, *args, **kwargs):
-        super(UserUpdateForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Update', css_class='btn float-end shadow btn-success px-4'))
+
 
 
 class ProfileUpdateForm(forms.ModelForm):
@@ -39,8 +32,3 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['image']
 
-    def __init__(self, *args, **kwargs):
-        super(ProfileUpdateForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Update', css_class='btn float-end shadow btn-success px-4'))

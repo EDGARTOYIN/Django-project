@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Category, Product, Profile
+from .models import Category, Product, Profile, User
 from django.contrib import messages
 from .forms import UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
