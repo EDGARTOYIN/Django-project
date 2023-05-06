@@ -58,7 +58,40 @@
         {% endfor %}
     </script>
 
+    <script>
+
+       $(document).ready(function() {
+    $('#search-form').on('submit', function(event) {
+        event.preventDefault();
+
+        var query = $(this).find('input[name="search_text"]').val();
+
+        $.ajax({
+            url: '{% url "search_products" %}',
+            data: {'search_text': query},
+            success: function(response) {
+                var results = response.data;
+                var html = '';
+
+                $.each(results, function(index, result) {
+                    var categorySlug = result.category_slug ? result.category_slug : '';
+                    html += '<a href="/collections/' + categorySlug + '/' + result.slug + '/">' + result.name + '</a><br>';
+                });
+
+                $('#search-results').html(html);
+            }
+        });
+    });
+});
+
+
+    </script>
+
+
+
     {% block scripts %}
+
+
 
     {% endblock scripts %}
 </body>

@@ -1,13 +1,10 @@
 from django.db import models
-
 from django.contrib.auth.models import User
-
 import datetime
 import os
 from PIL import Image
+from django.urls import reverse
 
-
-# Create your models here.
 
 def get_file_path(request, filename):
     original_filename = filename
@@ -24,6 +21,27 @@ def get_file_path1(request, filename):
 
 
 class Category(models.Model):
+    """
+        Modelo para representar una categoría de productos en la base de datos.
+
+        Attributes:
+            slug (str): El slug de la categoría.
+            name (str): El nombre de la categoría.
+            image (ImageField): Una imagen asociada a la categoría.
+            description (str): La descripción de la categoría.
+            small_description (str): Una descripción breve de la categoría.
+            status (bool): El estado de la categoría (0=default, 1=Hidden).
+            trending (bool): Indica si la categoría está en tendencia (0=default, 1=Trending).
+            meta_title (str): El título meta de la categoría.
+            meta_keywords (str): Las palabras clave meta de la categoría.
+            meta_description (str): La descripción meta de la categoría.
+            created_at (DateTimeField): La fecha y hora de creación de la categoría.
+            objects (Manager): El administrador de objetos del modelo.
+
+        Methods:
+            __str__(): Retorna el nombre de la categoría como representación en cadena del objeto.
+
+        """
     slug = models.CharField(max_length=150, null=False, blank=False)
     name = models.CharField(max_length=150, null=False, blank=False)
     image = models.ImageField(upload_to=get_file_path, null=True, blank=True)
@@ -42,6 +60,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     slug = models.CharField(max_length=150, null=False, blank=False)
     name = models.CharField(max_length=150, null=False, blank=False)
@@ -62,12 +81,37 @@ class Product(models.Model):
 
 
 class Profile(models.Model):
+    """
+       Modelo para representar el perfil de usuario en la base de datos.
+
+       Attributes:
+           user (OneToOneField): El usuario al que está asociado el perfil.
+           favorite_products (ManyToManyField): Los productos favoritos asociados al perfil.
+           image (ImageField): Una imagen asociada al perfil.
+           objects (Manager): El administrador de objetos del modelo.
+
+       Methods:
+           save(*args, **kwargs): Sobreescribe el método save() para procesar la imagen del perfil antes de guardarla.
+           __str__(): Retorna una representación en cadena del objeto.
+
+       """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     favorite_products = models.ManyToManyField(Product)
     image = models.ImageField(default='user_uploads/default.jpg', upload_to=get_file_path1)
     objects = models.Manager()
 
     def save(self, *args, **kwargs):
+        """
+                Sobreescribe el método save() para procesar la imagen del perfil antes de guardarla.
+
+                Este método se encarga de procesar la imagen del perfil antes de guardarla en la base de datos.
+                Asegura que la imagen tenga un tamaño máximo de 300x300 píxeles antes de guardarla.
+
+                Args:
+                    *args: Argumentos posicionales pasados al método save().
+                    **kwargs: Argumentos de palabras clave pasados al método save().
+
+                """
         super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
