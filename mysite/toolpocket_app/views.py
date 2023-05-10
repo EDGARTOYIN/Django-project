@@ -29,16 +29,17 @@ def home(request):
 
 
 def search_products(request):
-    query = request.GET.get('search_text', '') # cambia 'query' a 'search_text'
+    query = request.GET.get('search_text')
+    if query:
+        products = Product.objects.filter(name__istartswith=query, status=0)
+        data = [{'name': p.name, 'slug': p.slug, 'category_slug': p.category.slug, 'category_name': p.category.name, 'image': p.product_image.url if p.product_image else None} for p in products]
 
-    products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query), status=0)
+        if not products:
+            return JsonResponse({'message': 'No se encontraron resultados.'})
+        return JsonResponse({'data': data})
+    return JsonResponse({'message': 'Ingresa una búsqueda válida.'})
 
-    if not products:
-        return JsonResponse({'message': 'No se encontraron resultados.'})
 
-    data = [{'name': p.name, 'slug': p.slug, 'category_slug': p.category.slug} for p in products]
-
-    return JsonResponse({'data': data})
 
 
 def collections(request):

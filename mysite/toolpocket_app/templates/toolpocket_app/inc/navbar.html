@@ -7,11 +7,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-              <form id="search-form">
-                  <input type="text" name="search_text" placeholder="Buscar...">
-                  <button type="submit">Buscar</button>
+              <form class="search-form" id="search-form" autocomplete="off">
+                <div class="input-group">
+                  <input type="text" class="form-control search-input" name="search_text" placeholder="Buscar...">
+                  <button type="submit" class="btn search-button">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
               </form>
-            <div id="search-results"></div>
+              <div id="search-results"></div>
           </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
@@ -43,5 +47,6 @@
     </div>
   </div>
 </nav>
+
 
 
