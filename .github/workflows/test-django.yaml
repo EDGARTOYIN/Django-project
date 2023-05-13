@@ -1,0 +1,22 @@
+name: 1 - Test Django
+
+
+on: 
+  workflow_dispatch:
+    
+jobs:
+    django-test:
+        runs-on: ubuntu-lastest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: setup Python 3.10
+              uses: actions/setup-python@v2
+              with:
+                  python-version: "3.10"
+            - name: Install requirements
+              run: pip install -r requirements.txt
+            - name: Run Django Tests
+              run: Python manage.py test
+            
+            
