@@ -1,0 +1,6 @@
+ a{
+            text-decoration: none;
+        }
+        .ajs-message {
+            color: red !important; /* Cambiar el color del texto */
+   }
