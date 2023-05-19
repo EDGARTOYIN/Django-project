@@ -1,6 +1,11 @@
  a{
             text-decoration: none;
+            text-underline:none;
         }
         .ajs-message {
-            color: red !important; /* Cambiar el color del texto */
+          color: red !important; /* Cambiar el color del texto */
+          background-color: #ffeaea !important; /* Cambiar el color de fondo */
+          border: 1px solid #ff7b7b !important; /* Agregar borde */
+          border-radius: 4px !important; /* Agregar bordes redondeados */
+          padding: 10px !important; /* Ajustar el espaciado interno */
    }

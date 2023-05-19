@@ -1,0 +1,83 @@
+.card {
+  width: 100%;
+
+}
+
+.card .card-img-top {
+  object-fit: fill;
+  height: 200px;
+  position:relative;
+}
+
+
+
+.card-bodyy{
+
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: -100%;
+    position: absolute;
+    background-color: #1f3d4738;
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    color: #fff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Alineación vertical */
+    transition: 0.1s;
+    text-align: center; /* Alineación horizontal */
+
+}
+
+.card:hover .card-bodyy{
+    right:0;
+}
+
+
+.card-title{
+    text-align: center;
+    text-transform:uppercase;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+a{
+    text-decoration:none;
+    color:#fff;
+}
+
+a:hover{
+
+    color:white;
+
+
+}
+
+
+.card-btn{
+    width: 200px;
+    color:white;
+   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    padding: 6px 1px;
+    border:none;
+    outline:none;
+    font-weight: 500;
+    cursor:pointer;
+
+}
+
+.card-btn-d{
+    width: 200px;
+    color:white;
+    background: rgb(79,213,76);
+background: linear-gradient(150deg, rgba(79,213,76,1) 61%, rgba(255,244,27,1) 97%);
+    padding: 6px 1px;
+    border:none;
+    outline:none;
+    font-weight: 500;
+    cursor:pointer;
+
+}
