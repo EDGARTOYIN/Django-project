@@ -1,34 +1,35 @@
 {% extends 'toolpocket_app/layouts/main.html' %}
 
 {% block content %}
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="">
-                    <div class="card mt-3 shadow">
-                        <div class="card-body">
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                <div class="text-center">
-                                    <h4>Toolpocket login</h4>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <label for="">Username :</label>
-                                    <input type="text" class="form-control" name="username" placeholder="ingresa tu usuario">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="ingresa tu password ">
-                                </div>
-                                <button type="submit" class="btn float-end shadow btn-success px-4"> Login</button>
-                            </form>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card-body  login-box p-5">
+                    <h2>Inicia sesión en <br> Tool Pocket</h2>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-floating user-box mb-3">
+                            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="username">
+                            <label for="floatingInput">Usuario</label>
                         </div>
-                    </div>
+                        <div class="form-floating user-box">
+                            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="password">
+                            <label for="floatingPassword">Contraseña</label>
+                        </div>
+                        <button type="submit">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Iniciar Sesión
+                        </button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes una cuenta?
+                            <a href="{% url 'register' %}" class="link-danger">Regístrate
+                            </a>
+                        </p>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock content %}

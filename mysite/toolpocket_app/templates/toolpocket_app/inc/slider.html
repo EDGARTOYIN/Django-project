@@ -1,29 +1,58 @@
 
 {% load static %}
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{% static 'images/slider1.jpg'%}" height="700px" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'images/slider1.jpg'%}" height="700px" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'images/slider1.jpg'%}" height="700px" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+<link rel="stylesheet" href="{% static 'css/slider_images.css'%}">
+
+<div class="row slider-container">
+            <div class="col-sm container-bar">
+                <div class="sub-container-bar">
+                     <h1 style="color:white;">Busca las herramienta que quieres aqui</h1>
+                      <form class="search-form ser-bar" id="search-form" autocomplete="off">
+                        <div class="input-group">
+                          <input type="text" class="form-control " name="search_text" placeholder="Buscar...">
+                          <button type="submit" class="btn search-button">
+                            <i class="fas fa-search"></i>
+                          </button>
+                        </div>
+                      </form>
+                      <div id="search-results"></div>
+                </div>
+
+            </div>
+            <div class="col-md">
+              <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="img-s " src="{% static 'images/pic1.png'%}" alt="not found">
+                      <div class="carousel-caption">
+                          <h2>Usa un tool AHORA</h2>
+                          <a type="button" class="btn btn-success" href="{% url 'register' %}">Registrarse</a>
+                          <div>
+                              <a type="button" class="btn btn-success" href="{% url 'collections' %}">tools</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class=" img-s" src="{% static 'images/pic2.jpg'%}" alt="not found">
+                      <div class="carousel-caption">
+                          <h2>Usa un tool AHORA</h2>
+                          <button type="button" class="btn btn-success">Registrarse</button>
+                          <div>
+                                  <button type="button" class="btn btn-success">tools</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="img-s " src="{% static 'images/pic4.jpg'%}" alt="not found">
+                      <div class="carousel-caption">
+                          <h2>Usa un tool AHORA</h2>
+                          <button type="button" class="btn btn-success">Registrarse</button>
+                          <div>
+                              <button type="button" class="btn btn-success">tools</button>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 </div>

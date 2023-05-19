@@ -1,0 +1,265 @@
+body {
+font-family: sans-serif;
+background: #21223a;
+}
+
+.bg-navbar{
+background: linear-gradient(#0d1126, #21223a);
+}
+
+.bg-bar{
+background: #21223a;
+}
+
+.logo{
+  width: 118px;
+  height: 42px;
+}
+
+/*-- Personalización login y registro --*/
+
+.login-box{
+  background: rgba(12, 13, 30, 0.91);
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #9E579D;
+  text-align: center;
+}
+
+.login-box p {
+  color: #9E579D;
+  text-align: right;
+}
+
+.login-box .user-box input {
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+}
+.login-box .user-box .inv {
+  text-align: left;
+}
+
+.login-box .user-box label {
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  color: #9b44d9;
+}
+
+.login-box form button {
+  position: relative;
+  padding: 10px 20px;
+  background: transparent;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #9b44d9;
+  overflow: hidden;
+  border-color: transparent;
+  transition: .5s;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  letter-spacing: 2px
+}
+
+.login-box button:hover {
+  background: #9b44d9;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #9b44d9,
+              0 0 25px #9b44d9,
+              0 0 50px #9b44d9,
+              0 0 100px #9b44d9;
+}
+
+.login-box button span {
+  position: absolute;
+  display: block;
+}
+
+.login-box button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: #9b44d9;
+  animation: btn-anim1 1s linear infinite;
+}
+
+.login-box button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: #9b44d9;
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+.login-box button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: #9b44d9;
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+.login-box button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: #9b44d9;
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+.login-box form .button-r {
+  position: relative;
+  padding: 10px 20px;
+  background: transparent;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #44d973;
+  overflow: hidden;
+  border-color: transparent;
+  transition: .5s;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  letter-spacing: 2px
+}
+
+.login-box .button-r:hover {
+  background: #44d973;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #44d973,
+              0 0 25px #44d973,
+              0 0 50px #44d973,
+              0 0 100px #44d973;
+}
+
+.login-box .button-r span {
+  position: absolute;
+  display: block;
+}
+
+.login-box .button-r span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: #44d973;
+  animation: btn-anim1 1s linear infinite;
+}
+
+.login-box .button-r span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: #44d973;
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+.login-box .button-r span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: #44d973;
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+.login-box .button-r span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: #44d973;
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+
+
+/*-- Keyframes --*/
+h1.sign {
+  font-size: 40px;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #B28BB1FF;
+  animation: neon 1s ease-in-out infinite alternate;
+}
+/*-- Animation Keyframes --*/
+
+@keyframes neon {
+  from {
+    text-shadow:
+    0 0 6px rgb(178, 139, 177),
+    0 0 30px rgba(171, 163, 171, 0.34),
+    0 0 12px rgba(178, 27, 177, 0.52),
+    0 0 21px rgba(154, 43, 153, 0.92),
+    0 0 34px rgba(154, 43, 153,0.78),
+    0 0 54px rgba(154, 43, 153,0.92);
+  }
+  to {
+    text-shadow:
+    0 0 6px rgb(162, 106, 161),
+    0 0 30px rgba(162, 106, 161, 0.34),
+    0 0 12px rgba(87, 75, 144,0.52),
+    0 0 21px rgba(87, 75, 144,0.92),
+    0 0 34px rgba(87, 75, 144,0.78),
+    0 0 54px rgba(87, 75, 144,0.92);
+  }
+}

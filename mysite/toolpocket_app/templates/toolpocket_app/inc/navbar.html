@@ -1,52 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-navbar">
   <div class="container">
-    <a class="navbar-brand" href="{% url 'home' %}">Toolpocket</a>
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="" class="logo d-inline-block"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-              <form class="search-form" id="search-form" autocomplete="off">
-                <div class="input-group">
-                  <input type="text" class="form-control search-input" name="search_text" placeholder="Buscar...">
-                  <button type="submit" class="btn search-button">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </form>
-              <div id="search-results"></div>
-          </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          <a class="nav-link" aria-current="page" href="{% url 'home' %}">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'collections' %}">Categorias</a>
+          <a class="nav-link" href="{% url 'collections' %}">Categorías</a>
         </li>
-
         {% if request.user.is_authenticated %}
              <li class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                      {{ request.user }}
                  </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{% url 'profile' %}">Your profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile' %}">Perfil</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">logout</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
                 </ul>
              </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'loginpage' %}" >login</a>
+                <a class="nav-link" href="{% url 'loginpage' %}" >Iniciar sesión</a>
             </li>
             <li>
-                <a class="nav-link" href="{% url 'register' %}">register</a>
+                <a class="nav-link" href="{% url 'register' %}">Regístrate</a>
             </li>
         {% endif %}
       </ul>
     </div>
   </div>
 </nav>
-
-
-
