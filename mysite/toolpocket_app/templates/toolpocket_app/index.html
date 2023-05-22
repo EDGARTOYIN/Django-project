@@ -5,6 +5,7 @@
 {% block content %}
 
     {% include 'toolpocket_app/inc/slider.html' %}
+
     {% for item in category %}
         <div class="container my-5">
             <div class="row">
@@ -28,8 +29,6 @@
                                                         {% csrf_token %}
                                                         <input type="hidden" name="product_id" value="{{ p_item.id }}">
                                                         <button type="submit" class="card-btn-d">Agregar a favoritos</button>
-
-
                                                       </form>
                                                 </div>
 

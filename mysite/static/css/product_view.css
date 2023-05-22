@@ -1,0 +1,84 @@
+.positive-point {
+    color: green;
+    font-weight: bold;
+}
+
+.negative-point {
+    color: red;
+    font-weight: bold;
+}
+
+
+.serviceBox{
+    color: #555;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 0 25px 20px;
+    margin: 0 -5px;
+    position: relative;
+    z-index: 1;
+}
+.serviceBox:before,
+.serviceBox:after{
+    content: '';
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px -5px rgba(0,0,0,0.4);
+    position: absolute;
+    left: 15px;
+    top: 0;
+    right: 15px;
+    bottom: 10px;
+    z-index: -1;
+}
+.serviceBox:after{
+    background-color: transparent;
+    border: 2px solid #5A3AFD;;
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    box-shadow: none;
+    left: 0;
+    top: 30%;
+    right: 0;
+    bottom: 0;
+}
+.serviceBox .service-icon{
+    color: #fff;
+    background: #5A3AFD;
+    font-size: 28px;
+    padding: 1px 30px;
+    margin: 0 0 25px;
+    border-radius: 0 0 20px 20px;
+    display: inline-block;
+
+}
+.serviceBox .title{
+    color: #5A3AFD;;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+}
+.serviceBox .description{
+    font-size: 14px;
+    line-height: 23px;
+    margin: 0 10px;
+}
+.serviceBox.orange .service-icon{ background: #FD6D49; }
+.serviceBox.orange:after{ border-color: #FD6D49; }
+.serviceBox.orange .title{ color: #FD6D49; }
+
+ .service-icon {
+        background-color: transparent;
+        transition: background-color 0.3s;
+    }
+
+    .service-icon:hover {
+        background-color: #036bfc;
+    }
+
+
+@media only screen and (max-width: 990px){
+    .serviceBox{ margin: 0 0 40px; }
+}

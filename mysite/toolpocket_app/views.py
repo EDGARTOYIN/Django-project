@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.urls import reverse
 from django.http import JsonResponse
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -32,14 +33,13 @@ def search_products(request):
     query = request.GET.get('search_text')
     if query:
         products = Product.objects.filter(name__istartswith=query, status=0)
-        data = [{'name': p.name, 'slug': p.slug, 'category_slug': p.category.slug, 'category_name': p.category.name, 'image': p.product_image.url if p.product_image else None} for p in products]
+        data = [{'name': p.name, 'slug': p.slug, 'category_slug': p.category.slug, 'category_name': p.category.name,
+                 'image': p.product_image.url if p.product_image else None} for p in products]
 
         if not products:
             return JsonResponse({'message': 'No se encontraron resultados.'})
         return JsonResponse({'data': data})
     return JsonResponse({'message': 'Ingresa una búsqueda válida.'})
-
-
 
 
 def collections(request):
@@ -72,7 +72,9 @@ def productview(request, cate_slug, prod_slug):
     if Category.objects.filter(slug=cate_slug, status=0):
         if Product.objects.filter(slug=prod_slug.strip(), status=0):
             products = Product.objects.filter(slug=prod_slug.strip(), status=0).first()
-            context = {'products': products}
+            related_videos = products.related_videos.split(',')
+            related_gifs = products.gif.split(',')
+            context = {'products': products, 'related_videos': related_videos, 'related_gifs': related_gifs}
         else:
             messages.error(request, 'No se encontro ese producto')
             return redirect('collections')
@@ -80,7 +82,6 @@ def productview(request, cate_slug, prod_slug):
         messages.error(request, 'No se encontro esa categoria')
         return redirect('collections')
     return render(request, "toolpocket_app/products/view.html", context)
-
 
 
 @login_required
@@ -123,4 +124,4 @@ def add_to_favorites(request):
         user_profile = request.user.profile
         user_profile.favorite_products.add(product)
         messages.success(request, f'{product.name} agregado a tus favoritos')
-    return redirect('/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

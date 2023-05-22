@@ -66,7 +66,7 @@ class Product(models.Model):
     name = models.CharField(max_length=150, null=False, blank=False)
     link = models.CharField(max_length=150, null=True, blank=False)
     product_image = models.ImageField(upload_to=get_file_path, null=True, blank=True)
-    description = models.TextField(max_length=500, null=False, blank=False)
+    description = models.TextField(null=False, blank=False)
     status = models.BooleanField(default=False, help_text='0=default, 1=Hidden')
     trending = models.BooleanField(default=False, help_text='0=default, 1=Trending')
     tag = models.CharField(max_length=150, null=False, blank=False)
@@ -74,7 +74,28 @@ class Product(models.Model):
     meta_keywords = models.CharField(max_length=150, null=False, blank=False)
     meta_description = models.TextField(max_length=500, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    pros_and_cons = models.TextField(blank=True, null=True)
+    related_videos = models.TextField(blank=True, null=True)
+    gif = models.TextField(blank=True, null=True)
     objects = models.Manager()
+
+    def get_formatted_pros_and_cons(self):
+        pros_and_cons = self.pros_and_cons.strip().split('\n')
+
+        formatted_pros_and_cons = []
+
+        for line in pros_and_cons:
+            if line.startswith('- Puntos positivos:'):
+                formatted_pros_and_cons.append(
+                    '<span class="positive-point"><i class="fa-solid fa-circle-plus"></i>' + line[19:] + 'puntos positivos:' + '</span>')
+            elif line.startswith('- Puntos negativos:'):
+                formatted_pros_and_cons.append(
+                    '<span class="negative-point"><i class="fa-solid fa-circle-minus"></i>' + line[19:] + 'puntos negativos:' + '</span>')
+            elif line.strip() != '':
+                formatted_pros_and_cons.append('<span class="bullet">&#8226;</span> ' + line)
+            formatted_pros_and_cons.append('<br>')
+
+        return ''.join(formatted_pros_and_cons)
 
     def __str__(self):
         return self.name
